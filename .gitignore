@@ -1,0 +1,5 @@
+venv/*
+omargeddon/omargeddon/settings.py
+.idea
+__pycache__/*
+omargeddon/db.sqlite3

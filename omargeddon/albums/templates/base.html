@@ -1,0 +1,22 @@
+<html>
+<head>
+    <title>ORL - {% block title %}Albums{% endblock %}</title>
+    <style>
+        body {margin:0;font-family:Helvetica}
+        h1 {display:block;margin:0;padding:1.5em; text-align:center;background:#f28739}
+        a {text-decoration:none;color:#111}
+
+        .album_detail {
+            max-width:610px;margin:0 auto;background:#ffcc39
+        }
+    </style>
+</head>
+<body>
+<h1><a href="{% url 'album_index' %}">OMARGEDDON</a></h1>
+
+<div style="padding:2em;">
+{% block main %}
+{% endblock %}
+</div>
+</body>
+</html>

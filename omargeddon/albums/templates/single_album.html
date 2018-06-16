@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Albums{% endblock %}
+
+{% block main %}
+<div class="album_detail">
+
+    <img src="{{ album.pic }}" alt="{{ album.title}}" style="height:300px;width:300px;display:block;margin:auto;padding:1em" />
+    <h2 style="text-align:center"><a href="{% url 'single_album' album.id %}">{{ album.title.upper }}</a></h2>
+    <ul style="padding:20px">
+    {% for track in album.tracklisting %}
+        <li><a href="{% url 'single_track' track.id %}">{{ track.song_title }}</a> ({{ track.song_length }})</li>
+    {% endfor %}
+    </ul>
+</div>
+{% endblock %}

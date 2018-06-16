@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Albums{% endblock %}
+
+{% block main %}
+<div style="max-width:610px;margin:2em auto">
+{% for album in albums %}
+<div style="max-width:300px;float:left">
+    <img src="{{ album.pic }}" alt="{{ album.title}}" style="height:300px;width:300px" />
+    <p style="text-align:center"><a href="{% url 'single_album' album.id %}">{{ album.title }}</a></p>
+</div>
+{% endfor %}
+</div>
+{% endblock %}

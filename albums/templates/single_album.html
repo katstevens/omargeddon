@@ -1,11 +1,15 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}Albums{% endblock %}
 
 {% block main %}
 <div class="album_detail">
-
-    <img src="{{ album.image_file.url }}" alt="{{ album.title}}" style="height:300px;width:300px;display:block;margin:auto;padding:1em" />
+    {% if album.image_file %}
+        <img src="{{ album.image_file.url }}" alt="{{ album.title }}" class="single_album_cover" />
+        {% else %}
+        <img src="{% static album.title|slugify %}" alt="{{ album.title }}" class="single_album_cover">
+        {% endif %}
     <h2 style="text-align:center"><a href="{% url 'single_album' album.id %}">{{ album.title.upper }}</a></h2>
     <ul style="padding:20px;list-style-type:none">
     {% for track in album.tracklisting %}

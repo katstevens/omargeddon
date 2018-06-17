@@ -14,6 +14,7 @@ class Album(models.Model):
     artist = models.CharField(default="Omar Rodriguez Lopez", max_length=256)
     description = models.TextField(null=True, blank=True)
     image_file = models.ImageField(null=True, blank=True, upload_to="images/albums")
+    image_path = models.CharField(null=True, blank=True, max_length=256)
     release_date = models.CharField(max_length=100)
     release_label = models.CharField(max_length=100)
 

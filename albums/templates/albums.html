@@ -8,11 +8,14 @@
 {% for album in albums %}
 <div style="max-width:300px;float:left;margin:10px">
     <a href="{% url 'single_album' album.id %}">
-        {% if album.image_file %}
-        <img src="{{ album.image_file.url }}" alt="{{ album.title }}" style="height:300px;width:300px;" />
+            {% if album.image_file %}
+        <img src="{{ album.image_file.url }}" alt="{{ album.title }}" class="album_cover" />
+    {% elif album.image_path %}
+        <img src="{% static album.image_path %}" alt="{{ album.title }}" class="album_cover" />
         {% else %}
-        <img src="{% static album.title|slugify %}" alt="{{ album.title }}" style="height:300px;width:300px;">
+        <img src="{% static album.title|slugify %}.jpg" alt="{{ album.title }}" class="album_cover">
         {% endif %}
+
     </a>
     <p style="text-align:center"><a href="{% url 'single_album' album.id %}">{{ album.title.upper }}</a></p>
 </div>

@@ -1,1 +1,1 @@
-web: gunicorn omargeddon.wsgi
+web: gunicorn omargeddon/omargeddon.wsgi

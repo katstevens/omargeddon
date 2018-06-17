@@ -1,13 +1,14 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}Albums{% endblock %}
 
 {% block main %}
-<div style="max-width:610px;margin:2em auto">
+<div style="max-width:640px;margin:2em auto">
 {% for album in albums %}
-<div style="max-width:300px;float:left">
-    <img src="{{ album.pic }}" alt="{{ album.title}}" style="height:300px;width:300px" />
-    <p style="text-align:center"><a href="{% url 'single_album' album.id %}">{{ album.title }}</a></p>
+<div style="max-width:300px;float:left;margin:10px">
+    <a href="{% url 'single_album' album.id %}"><img src="{{ album.image_file.url }}" alt="{{ album.title }}" style="height:300px;width:300px;" /></a>
+    <p style="text-align:center"><a href="{% url 'single_album' album.id %}">{{ album.title.upper }}</a></p>
 </div>
 {% endfor %}
 </div>

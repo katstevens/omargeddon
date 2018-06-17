@@ -13,11 +13,11 @@ class Album(models.Model):
     title = models.CharField(max_length=256)
     artist = models.CharField(default="Omar Rodriguez Lopez", max_length=256)
     description = models.TextField(null=True, blank=True)
-    image_file = models.FileField(null=True, blank=True)
+    image_file = models.ImageField(null=True, blank=True, upload_to="images/albums")
     release_date = models.CharField(max_length=100)
     release_label = models.CharField(max_length=100)
 
-    tags = models.ManyToManyField(Tag, related_name='album_tags', null=True)
+    tags = models.ManyToManyField(Tag, related_name='album_tags', blank=True)
 
     def __str__(self):
         return self.title
@@ -30,7 +30,7 @@ class Track(models.Model):
     song_title = models.CharField(max_length=256)
     song_length = models.CharField(max_length=50, null=True, blank=True)
 
-    tags = models.ManyToManyField(Tag, related_name='track_tags', null=True)
+    tags = models.ManyToManyField(Tag, related_name='track_tags', blank=True)
 
     def __str__(self):
         return self.song_title

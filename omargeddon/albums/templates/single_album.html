@@ -5,12 +5,20 @@
 {% block main %}
 <div class="album_detail">
 
-    <img src="{{ album.pic }}" alt="{{ album.title}}" style="height:300px;width:300px;display:block;margin:auto;padding:1em" />
+    <img src="{{ album.image_file.url }}" alt="{{ album.title}}" style="height:300px;width:300px;display:block;margin:auto;padding:1em" />
     <h2 style="text-align:center"><a href="{% url 'single_album' album.id %}">{{ album.title.upper }}</a></h2>
-    <ul style="padding:20px">
+    <ul style="padding:20px;list-style-type:none">
     {% for track in album.tracklisting %}
-        <li><a href="{% url 'single_track' track.id %}">{{ track.song_title }}</a> ({{ track.song_length }})</li>
+        <li><a href="{% url 'single_track' track.id %}">{{ track.song_title.upper }}</a> ({{ track.song_length }})</li>
     {% endfor %}
     </ul>
+    <div style="padding:0 20px 20px">
+        <h3>CREDITS</h3>
+        {% for track in album.tracklisting %}
+            {% for credit in track.contributors %}
+            <b>{{ credit.contributor.name.upper }}:</b> {{ credit.credit.upper }}<br />
+            {% endfor %}
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}

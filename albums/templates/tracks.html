@@ -6,10 +6,10 @@
 <div style="max-width:610px;margin:2em auto">
 {% for track in tracks%}
 <div style="border-bottom:1px solid #444; padding: 1em">
-    <h3>{{ track.song_title }}</h3>
-    <p>Album: <a href="{% url 'single_album' track.album.id %}">{{ track.album.title }}</a></p>
-    <p>Release date: {{ track.album.release_date }}</p>
-    <h4>Contributors</h4>
+    <h3>{{ track.song_title.upper }}</h3>
+    <p><a href="{% url 'single_album' track.album.id %}">{{ track.album.title.upper }}</a>
+    ({{ track.album.release_date }})</p>
+    <h4>PERSONNEL</h4>
     {% for c in track.contributors %}
         {{ c.contributor.name }}: {{ c.credit }}<br />
     {% endfor %}

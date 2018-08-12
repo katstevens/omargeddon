@@ -4,9 +4,9 @@
 {% block title %}Albums{% endblock %}
 
 {% block main %}
-<div style="max-width:640px;margin:2em auto">
+<div class="albums_container">
 {% for album in albums %}
-<div style="max-width:300px;float:left;margin:10px">
+<div class="album_wrapper">
     <a href="{% url 'single_album' album.id %}">
             {% if album.image_file %}
         <img src="{{ album.image_file.url }}" alt="{{ album.title }}" class="album_cover" />

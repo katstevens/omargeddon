@@ -3,8 +3,12 @@ from django.contrib import admin
 from .models import *
 
 
-class AlbumAdmin(admin.ModelAdmin):
+class TrackInline(admin.TabularInline):
+    model = Track
 
+
+class AlbumAdmin(admin.ModelAdmin):
+    inlines = [TrackInline]
     list_display = ['title', 'sort_order', 'artist', 'release_date', 'release_label']
     list_editable = ['release_date', 'release_label', 'sort_order']
 

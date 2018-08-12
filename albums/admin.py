@@ -5,8 +5,8 @@ from .models import *
 
 class AlbumAdmin(admin.ModelAdmin):
 
-    list_display = ['title', 'sort_order', 'artist', 'release_date']
-    list_editable = ['release_date', 'sort_order']
+    list_display = ['title', 'sort_order', 'artist', 'release_date', 'release_label']
+    list_editable = ['release_date', 'release_label', 'sort_order']
 
 
 class TrackCreditInline(admin.TabularInline):

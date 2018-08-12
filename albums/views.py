@@ -4,6 +4,7 @@ from .models import Album, Tag, Track
 
 
 def index(request):
+    # TODO: pagination
     albums = get_list_or_404(Album)
     return render(request, 'albums.html', context={'albums': albums})
 

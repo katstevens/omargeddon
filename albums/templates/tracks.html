@@ -7,12 +7,25 @@
 {% for track in tracks%}
 <div style="border-bottom:1px solid #444; padding: 1em">
     <h3>{{ track.song_title.upper }}</h3>
-    <p><a href="{% url 'single_album' track.album.id %}">{{ track.album.title.upper }}</a>
-    ({{ track.album.release_date }})</p>
+
+    <h4>ALBUM</h4>
+    <p>{{ track.album.artist.upper }} - <a href="{% url 'single_album' track.album.id %}">{{ track.album.title.upper }}</a>
+    ({{ track.album.release_date.upper }})</p>
+    <p>TRACK {{ track.sort_order }} </p>
     <h4>PERSONNEL</h4>
+    <table style="width:100%">
     {% for c in track.contributors %}
-        {{ c.contributor.name }}: {{ c.credit }}<br />
+        <tr>
+            <td>{{ c.contributor.name.upper }}</td>
+            <td>{{ c.credit.upper }}</td>
+        </tr>
     {% endfor %}
+    </table>
+    <h4>TAGS</h4>
+    {% for tag in track.tags.all %}
+        <a href="{% url 'tracks_by_tag' tag.tag_slug %}">{{ tag.tag_name.upper }}</a><br />
+    {% endfor %}
+
 </div>
 {% endfor %}
 </div>

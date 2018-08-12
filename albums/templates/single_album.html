@@ -12,7 +12,10 @@
         {% else %}
         <img src="{% static album.title|slugify %}.jpg" alt="{{ album.title }}" class="single_album_cover">
         {% endif %}
-    <h2 style="text-align:center"><a href="{% url 'single_album' album.id %}">{{ album.title.upper }}</a></h2>
+    <h2><a href="{% url 'single_album' album.id %}">{{ album.title.upper }}</a></h2>
+    <h3>{{ album.artist.upper }}</h3>
+
+
     <ul style="padding:20px;list-style-type:none">
     {% for track in album.tracklisting %}
         <li>{{ track.sort_order}}.
@@ -21,12 +24,17 @@
         </li>
     {% endfor %}
     </ul>
-    <div style="padding:0 20px 20px">
+    <div class="personnel">
         <h3>PERSONNEL</h3>
         {% for contributor in contributors %}
             {{ contributor.name.upper }}<br />
         {% endfor %}
-
+    </div>
+    <div class="personnel">
+        <h3>TAGS</h3>
+        {% for tag in album.tags.all %}
+            <a href="{% url 'albums_by_tag' tag.tag_slug %}">{{ tag.tag_name.upper }}</a><br />
+        {% endfor %}
     </div>
 </div>
 {% endblock %}

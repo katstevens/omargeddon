@@ -8,9 +8,26 @@ def index(request):
     return render(request, 'albums.html', context={'albums': albums})
 
 
+def about(request):
+    return render(request, 'about.html')
+
+
+def playlists(request):
+    return render(request, 'playlists.html')
+
+
 def single_album(request, album_id):
     album = get_object_or_404(Album, pk=album_id)
-    return render(request, 'single_album.html', context={'album': album})
+    # TODO: display set of contributors across all tracks
+
+    personnel = []
+    for track in album.tracklisting():
+        track_contributors = track.contributors()
+        for credit in track_contributors:
+            if credit.contributor not in personnel:
+                personnel.append(credit.contributor)
+
+    return render(request, 'single_album.html', context={'album': album, 'contributors': personnel})
 
 
 def single_track(request, track_id):
@@ -28,5 +45,3 @@ def tracks_by_tag(request, tag_slug):
     tag = get_object_or_404(Tag, tag_slug=tag_slug)
     tracks = get_list_or_404(Track, tags=tag)
     return render(request, 'tracks.html', context={'tracks': tracks})
-
-

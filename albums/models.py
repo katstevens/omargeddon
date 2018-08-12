@@ -17,8 +17,12 @@ class Album(models.Model):
     image_path = models.CharField(null=True, blank=True, max_length=256)
     release_date = models.CharField(max_length=100)
     release_label = models.CharField(max_length=100)
+    sort_order = models.IntegerField(default=0)
 
     tags = models.ManyToManyField(Tag, related_name='album_tags', blank=True)
+
+    class Meta:
+        ordering = ['sort_order']
 
     def __str__(self):
         return self.title
@@ -30,8 +34,12 @@ class Track(models.Model):
     album = models.ForeignKey(Album, on_delete=models.CASCADE)
     song_title = models.CharField(max_length=256)
     song_length = models.CharField(max_length=50, null=True, blank=True)
+    sort_order = models.IntegerField(default=0)
 
     tags = models.ManyToManyField(Tag, related_name='track_tags', blank=True)
+
+    class Meta:
+        ordering = ['sort_order']
 
     def __str__(self):
         return self.song_title

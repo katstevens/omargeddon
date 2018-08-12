@@ -23,4 +23,6 @@ urlpatterns = [
     path('albums/tag/<str:tag_slug>', views.albums_by_tag, name='albums_by_tag'),
     path('tracks/tag/<str:tag_slug>', views.tracks_by_tag, name='tracks_by_tag'),
     path('tracks/<int:track_id>', views.single_track, name='single_track'),
+    path('playlists', views.playlists, name='playlists'),
+    path('about', views.about, name='about'),
 ]

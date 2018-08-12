@@ -19,7 +19,6 @@ def playlists(request):
 
 def single_album(request, album_id):
     album = get_object_or_404(Album, pk=album_id)
-    # TODO: display set of contributors across all tracks
 
     personnel = []
     for track in album.tracklisting():

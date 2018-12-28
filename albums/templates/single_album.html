@@ -21,8 +21,7 @@
         <tr><td>{{ track.sort_order}}.</td>
             <td>
             <a href="{% url 'single_track' track.id %}">{{ track.song_title.upper }}</a></td>
-            <td>({{ track.song_length }})</td>
-            <td><a href="{% url 'single_track' track.id %}">View details &raquo;</a></td>
+            <td style="padding-left:5px">({{ track.song_length }})</td>
         </tr>
     {% endfor %}
     </table>
@@ -37,6 +36,11 @@
         {% for tag in album.tags.all %}
             <a href="{% url 'albums_by_tag' tag.tag_slug %}">{{ tag.tag_name.upper }}</a><br />
         {% endfor %}
+    </div>
+    <div class="personnel">
+
+        {{ album.description|safe }}
+
     </div>
 </div>
 {% endblock %}

@@ -65,6 +65,16 @@
         <td class="sidebar">
 
             <div style="padding:1em;">
+                {% if sidebar %}
+                    {% for sidebar_item in sidebar %}
+                        <h3>
+                            {% if sidebar_item.section_link %}<a href="{% url 'about' %}">{% endif %}
+                                {{ sidebar_item.section_name }}
+                            {% if sidebar_item.section_link %}</a>{% endif %}
+                        </h3>
+                        <p>{{ sidebar_item.section_text|safe }}</p>
+                    {% endfor %}
+                {% else %}
                 <h3><a href="{% url 'about' %}">ABOUT</a></h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt t labore et
                     dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
@@ -85,6 +95,7 @@
 
                 <h3>CONTACT</h3>
                 <p>Hello</p>
+                {% endif %}
             </div>
         </td>
     </tr>

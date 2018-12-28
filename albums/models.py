@@ -65,3 +65,18 @@ class TrackCredit(models.Model):
 
     def __str__(self):
         return "{} - {}".format(self.track.album.title, self.contributor.name)
+
+
+class SidebarInfo(models.Model):
+    section_name = models.CharField(max_length=100)
+    section_text = models.TextField(null=True, blank=True)
+    section_link = models.CharField(max_length=100, default="", blank=True)
+    visible = models.BooleanField()
+    sort_order = models.IntegerField(default=0)
+
+    class Meta:
+        ordering = ['sort_order']
+        verbose_name_plural = 'Side bar info'
+
+    def __str__(self):
+        return self.section_name

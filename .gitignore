@@ -1,5 +1,8 @@
 venv/*
 .idea
+.DS_Store
+albums/.DS_Store
+staticfiles/*
 **/__pycache__/*
 db.sqlite3
 config
